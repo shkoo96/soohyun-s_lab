@@ -12,52 +12,22 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap" rel="stylesheet">	
-		<!-- JS -->		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <script>
-      function onOrder() {
-        let name=$("#input_name").val();
-        if(name=='') {
-          alert("이름을 입력하세요");
-          return;
-        }
-        let count = $("#inputGroupSelect01").val();
-        if (count<1) {
-          alert("수량을 선택하세요");
-          return;
-         }
-        let address = $("#input_address").val();
-        if (address=='') {
-          alert("주소를 입력하세요");
-          return;
-        }
-        let number =$("#input_number").val();
-        if (number=='') {
-          alert("전화번호를 입력하세요");
-          return;
-        }        
-      }
-    </script>
-
+	
 <style>
     *{
-        font-family: 'Poor Story', cursive;
+      font-family: 'Poor Story', cursive;
     }
     .container {
       text-align: center;
     }
     .product_img {
-        margin: 0px auto;
+        margin: 1em auto;
         width: 60%;
         display: block;
     }
     .order_button {
       text-align: center;
+      margin: 0px auto 2em auto;
     }
     .wrapper {
       width: 700px;
@@ -118,6 +88,41 @@
   <button type="button" class="btn btn-primary" onclick="onOrder()">주문하기</button>
 </div>
 
+
+
+	<!-- JS -->		
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+  <script>
+    function onOrder() {
+      let name=$("#input_name").val();
+      if(name=='') {
+        alert("이름을 입력하세요");
+        $("#input_name").focus();
+        return;
+      }
+      let count = $("#inputGroupSelect01").val();
+      if (count<1) {
+        alert("수량을 선택하세요");
+        $("#inputGroupSelect01").focus();
+        return;
+       }
+      let address = $("#input_address").val();
+      if (address=='') {
+        alert("주소를 입력하세요");
+        $("#input_address").focus();
+        return;
+      }
+      let number =$("#input_number").val();
+      if (number=='') {
+        alert("전화번호를 입력하세요");
+        $("#input_number").focus();
+        return;
+      }        
+    }
+  </script>
 
 </body>
 
