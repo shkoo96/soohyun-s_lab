@@ -74,12 +74,8 @@
               let type = response.storeInfos[i].type;
               if (type == "01") {
                 let name = response.storeInfos[i].name;
-                let addr = response.storeInfos[i].addr;
                 $("#names").append(`
-                <blockquote class="blockquote">
-                <p class="mb-0">${name}</p>
-                <footer class="blockquote-footer">${addr}</footer>
-                </blockquote>
+                <li>${name}</li>
                 `);
               }
             }

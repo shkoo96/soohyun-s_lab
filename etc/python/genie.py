@@ -6,6 +6,8 @@ data = requests.get('https://www.genie.co.kr/chart/top200?ditc=D&rtm=N&ymd=20200
 
 soup = BeautifulSoup(data.text, 'html.parser')
 
+
+
 lists = soup.select('tr.list')
 for list in lists:
     songName = list.select_one('a.title').text.strip()
