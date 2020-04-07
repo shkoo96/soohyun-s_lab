@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>JQuery 연습하고 가기!</title>
+    <!-- JQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <style type="text/css">
+      div.question-box {
+        margin: 10px 0 20px 0;
+      }
+      table {
+        border: 1px solid;
+        border-collapse: collapse;
+      }
+
+      td, th {
+        padding: 10px;
+        border: 1px solid;
+      }
+    </style>
+
+    <script>
+      function q1() {
+          rank = $("#read_rank").val();
+          title = $("#read_title").val();
+          if (rank==0, title ==0) {
+            $("#names-q1").empty();
+
+        // 여기에 코드를 입력하세요
+        $.ajax ({
+            type: "GET",
+            url: "/movies",
+            data: {},
+            success: function(response) {
+                
+                let size = response.length
+                
+                for (i=0; i< size; i++) {
+                    let rank = response[i].rank;
+                    let title = response[i].title;
+                    let score = response[i].score;
+                    let html = `
+                    <tr><td>${rank}</td> <td>${title}</td> <td>${score} 점</td></tr>`
+                    $("#names-q1").append(html);
+                }
+            }
+        })} else {
+            $("#names-q1").empty();
+            $.ajax ({
+            type: "GET",
+            url: "/movies",
+            data: {
+                rank : rank,
+                title : title
+            },
+            success: function(response) {
+                let size = response.length
+                
+                for (i=0; i< size; i++) {
+                    let rank = response[i].rank;
+                    let title = response[i].title;
+                    let score = response[i].score;
+                    let html = `
+                    <tr><td>${rank}</td> <td>${title}</td> <td>${score} 점</td></tr>`
+                    $("#names-q1").append(html);
+                }
+            }
+        })
+
+      }}
+      
+      
+
+      function q2() {
+        let rank = $("#input_rank").val();
+        let score = $("#input_score").val();
+        let title = $("#input_title").val();
+          $.ajax ({
+              type: "POST",
+              url: "/movies",
+              data: {
+                  rank : rank,
+                  score: score,
+                  title : title,
+              },
+              success: function(response) {
+
+                  
+                  console.log(response);
+                  q1();
+              }
+          })
+      }
+    </script>
+
+  </head>
+  <body>
+    <h1>영화 TOP 50</h1>
+
+    <hr/>
+
+    <div class="question-box">
+
+
+      <h2>추가하기</h2>
+        <div>순위 : <input type="number" id="input_rank"/></div>
+        <div>제목 : <input type="string" id="input_title"/></div>
+        <div>평점 : <input type="number" id="input_score"/></div>
+        <button onclick="q2()">추가하기</button>
+
+<br>
+
+        <h2>입력하기</h2>
+        <div>순위 : <input type="number" id="read_rank"/></div>
+        <div>제목 : <input type="string" id="read_title"/></div>
+
+
+
+      <button onclick="q1()">업데이트</button>
+
+      <br>
+      <h2>영화 목록</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>순위</td>
+            <td>제목</td>
+            <td>평점</td>
+          </tr>
+        </thead>
+        <tbody id="names-q1">
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
